@@ -1,0 +1,55 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Master>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+    <!doctype HTML>
+    <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+    <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+    <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Aarhus Web Development Consortium</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/content/bootstrap.min.css">
+        <script src="~/Scripts/jquery-3.1.0.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="/scripts/bootstrap.min.js"></script>
+        <h1 id="title">@Umbraco.Field("siteTitle")</h1>
+    </head>
+    <body>
+        <div id="header-container">
+            <header class="wrapper clearfix">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Brand</a>
+                        </div>
+                        @Umbraco.RenderMacro("mainMenuWithOurProjects")
+                    </div>
+                </nav>
+            </header>
+        </div>
+        <div class="container">
+            @RenderBody()
+        </div>
+			
+        <div class="" id="footer-container">
+            <footer class="container">
+                <h3>@Umbraco.Field("footer", recursive: true)</h3>
+            </footer>
+        </div>
+    </body>
+</html>

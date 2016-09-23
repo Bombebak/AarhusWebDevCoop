@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MessageBoardPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+<div id="main-container">
+    <div id="main" class="wrapper clearfix">
+        @Html.Raw(TempData["TempMsgBoard"])
+        <section>
+            <h2>Welcome to our message board</h2>
+
+            @Umbraco.RenderMacro("listMessages")
+        </section>
+    </div> <!-- #main -->
+</div> <!-- #main-container -->
+@Html.Action("CreateMessage", "MessageBoardSurface")

@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var selection = CurrentPage.Children.Where("Visible").OrderBy("CreateDate desc");
+    @* OrderBy() takes the property to sort by and optionally order desc/asc *@
+}
+@foreach (var item in selection)
+{
+<div class="panel panel-default">
+    <div class="panel-heading ">
+        @item.msgbName -
+        <span class="">@item.msgbCreateDate</span>
+
+        @using (Html.BeginForm("DeleteMessage", "MessageBoardSurFace", new {contentId = @item.Id, redirectId = CurrentPage.Id}, FormMethod.Post,
+        new {@class = "form-inline"}))
+        {
+
+        <button id="contact-submit" type="submit" class="btn btn-danger ">Remove</button>
+
+        }
+
+
+
+
+    </div>
+    <div class="panel-body">
+        @item.msgbMessage
+    </div>
+</div>
+}

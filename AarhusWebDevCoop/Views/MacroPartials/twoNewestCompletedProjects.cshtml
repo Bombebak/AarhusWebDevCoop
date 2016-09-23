@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{ var projects = Umbraco.Content(1074);}
+
+<div class="list-group">
+	<h3>Two newest projects</h3>
+    @foreach (var child in projects.Children.OrderBy("CreateDate").Where("projectStatus.Contains(\"Completed\")").Take(2)) {
+    <a href="@child.Url" class="list-group-item">
+    <h4 class="list-group-item-heading">@child.Name</h4>
+    <p class="list-group-item-text">@Umbraco.Truncate(@child.projectContents,200)</p>
+  </a>
+    
+    }
+
+</div>
