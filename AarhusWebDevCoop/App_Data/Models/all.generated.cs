@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "3199ed7e907f84ef")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9dca3bcb10f0893")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
 // FILE: models.generated.cs
@@ -82,6 +82,15 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<string>("metaKeywords"); }
 		}
+
+		///<summary>
+		/// Hide from nav
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return this.GetPropertyValue<bool>("umbracoNaviHide"); }
+		}
 	}
 
 	/// <summary>Home Page</summary>
@@ -135,15 +144,6 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<string>("siteTitle"); }
 		}
-
-		///<summary>
-		/// Hide from nav
-		///</summary>
-		[ImplementPropertyType("umbracoNaviHide")]
-		public bool UmbracoNaviHide
-		{
-			get { return this.GetPropertyValue<bool>("umbracoNaviHide"); }
-		}
 	}
 
 	/// <summary>Articles Main</summary>
@@ -187,15 +187,6 @@ namespace Umbraco.Web.PublishedContentModels
 		public string ArticleTitle
 		{
 			get { return this.GetPropertyValue<string>("articleTitle"); }
-		}
-
-		///<summary>
-		/// Hide from nav
-		///</summary>
-		[ImplementPropertyType("UmbracoNaviHide")]
-		public bool UmbracoNaviHide
-		{
-			get { return this.GetPropertyValue<bool>("UmbracoNaviHide"); }
 		}
 	}
 
@@ -319,6 +310,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public IHtmlString ProjectContents
 		{
 			get { return this.GetPropertyValue<IHtmlString>("projectContents"); }
+		}
+
+		///<summary>
+		/// Project Image: An image used as a thumb when displaying projects and also on the details page of the selected item
+		///</summary>
+		[ImplementPropertyType("projectImage")]
+		public Umbraco.Web.Models.ImageCropDataSet ProjectImage
+		{
+			get { return this.GetPropertyValue<Umbraco.Web.Models.ImageCropDataSet>("projectImage"); }
 		}
 
 		///<summary>
@@ -577,12 +577,38 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Hide from nav
+		/// hello
 		///</summary>
-		[ImplementPropertyType("umbracoNaviHide")]
-		public bool UmbracoNaviHide
+		[ImplementPropertyType("hello")]
+		public bool Hello
 		{
-			get { return this.GetPropertyValue<bool>("umbracoNaviHide"); }
+			get { return this.GetPropertyValue<bool>("hello"); }
+		}
+	}
+
+	/// <summary>Members</summary>
+	[PublishedContentModel("members")]
+	public partial class Members : Master
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "members";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Members(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Members, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 

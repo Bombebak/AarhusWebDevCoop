@@ -1,4 +1,19 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-	Layout = "TextPage.cshtml";
+	Layout = "Master.cshtml";
+}
+
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+	
+	<h1>Member login page</h1>
+	@Html.RenderJsHere()
+	@if (!Members.GetCurrentLoginStatus().IsLoggedIn) {
+		@Html.Partial("login");
+	}
+else {
+	@Html.Partial("logout");
 }
